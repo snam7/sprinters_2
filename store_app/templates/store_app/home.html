@@ -1,8 +1,5 @@
 {% extends 'base.html' %}
 {%load static%}
-
-{% block title %}Home - Savory Sprinters{% endblock %}
-
 {% block content %}
 <header>
     <h1>Welcome to Savory Sprinters</h1>
@@ -13,25 +10,25 @@
 <section>
     <h2>Top Dishes</h2>
     <div class="dishes-grid">
-        {% for dish in dishes %}
-<div class="dish">
-    {% if dish.image %}
-        <img src="{{ dish.image.url }}" alt="Picture of {{ dish.name }}">
-    {% else %}
-        <img src="{% static 'menu_items/default-image.jpg' %}" alt="Default image">
-    {% endif %}
-    <h3>{{ dish.name }}</h3>
-    <p>{{ dish.description }}</p>
-    <p>Price: ${{ dish.price }}</p>
-    <p>Ordered: {{ dish.orders_count }} times</p>
-</div>
-{% empty %}
-    <p>No dishes to display currently.</p>
-{% endfor %}
-
+        {% for item in dishes %}
+        <div class="dish">
+            {% if item.image %}
+                <img src="{{ item.image.url }}" alt="{{ item.name }}">
+            {% else %}
+                <img src="{% static 'menu_items/default-image.jpg' %}" alt="Default image">
+            {% endif %}
+            <h3>{{ item.name }}</h3>
+            <p>{{ item.description }}</p>
+            <p>Price: ${{ item.price }}</p>
+            <button onclick="location.href='{% url 'store_app:add_to_cart' item.id %}'">Add to Cart</button>
+        </div>
+        {% empty %}
+        <p>Sorry, no dishes are available at the moment.</p>
+        {% endfor %}
     </div>
 </section>
 {% endif %}
+
 
 
 {% if not user.is_authenticated %}

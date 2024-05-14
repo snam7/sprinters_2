@@ -1,8 +1,33 @@
 
-from django.shortcuts import render
 from .models import MenuItem
 from django.db.models import Count
 from . import views
+from django.shortcuts import redirect, render
+from django.contrib.auth.decorators import login_required
+from .models import MenuItem, CartItem
+
+@login_required
+def add_to_cart(request, item_id):
+    item = MenuItem.objects.get(id=item_id)
+    cart_item, created = CartItem.objects.get_or_create(
+        user=request.user, 
+        menu_item=item,
+        defaults={'quantity': 1}
+    )
+    if not created:
+        cart_item.quantity += 1
+        cart_item.save()
+    return redirect('store_app:menu')
+
+@login_required
+def view_cart(request):
+    cart_items = CartItem.objects.filter(user=request.user)
+    return render(request, 'store_app/cart.html', {'cart_items': cart_items})
+
+@login_required
+def remove_from_cart(request, item_id):
+    CartItem.objects.filter(id=item_id, user=request.user).delete()
+    return redirect('store_app:view_cart')
 
 
 def menu(request):

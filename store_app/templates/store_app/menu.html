@@ -18,7 +18,9 @@
             <h3>{{ item.name }}</h3>
             <p>{{ item.description }}</p>
             <p>Price: ${{ item.price }}</p>
-            <button>Add to Cart</button>
+            {% if user.is_authenticated %}
+            <button onclick="location.href='{% url 'store_app:add_to_cart' item.id %}'">Add to Cart</button>
+            {% endif %}
         </div>
         {% empty %}
         <p>Sorry, no dishes are available at the moment.</p>

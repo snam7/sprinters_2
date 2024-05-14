@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{%load static%}
 
 {% block title %}Home - Savory Sprinters{% endblock %}
 
@@ -13,16 +14,21 @@
     <h2>Top Dishes</h2>
     <div class="dishes-grid">
         {% for dish in dishes %}
-        <div class="dish">
-            <img src="{{ dish.image.url }}" alt="Picture of {{ dish.name }}">
-            <h3>{{ dish.name }}</h3>
-            <p>{{ dish.description }}</p>
-            <p>Price: ${{ dish.price }}</p>
-            <p>Ordered: {{ dish.orders_count }} times</p>
-        </div>
-        {% empty %}
-        <p>No dishes to display currently.</p>
-        {% endfor %}
+<div class="dish">
+    {% if dish.image %}
+        <img src="{{ dish.image.url }}" alt="Picture of {{ dish.name }}">
+    {% else %}
+        <img src="{% static 'menu_items/default-image.jpg' %}" alt="Default image">
+    {% endif %}
+    <h3>{{ dish.name }}</h3>
+    <p>{{ dish.description }}</p>
+    <p>Price: ${{ dish.price }}</p>
+    <p>Ordered: {{ dish.orders_count }} times</p>
+</div>
+{% empty %}
+    <p>No dishes to display currently.</p>
+{% endfor %}
+
     </div>
 </section>
 {% endif %}

@@ -8,6 +8,7 @@
     <p>Your favorite dishes delivered fast and fresh.</p>
 </header>
 
+{% if user.is_authenticated %}
 <section>
     <h2>Top Dishes</h2>
     <div class="dishes-grid">
@@ -22,10 +23,10 @@
         {% empty %}
         <p>No dishes to display currently.</p>
         {% endfor %}
-        
-
     </div>
 </section>
+{% endif %}
+
 
 {% if not user.is_authenticated %}
 <section id="login-section">

@@ -3,13 +3,14 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import CustomerRegistrationForm, CustomerProfileForm
+from django.contrib.auth.views import LoginView, LogoutView
 from .models import Customer
 from store_app.models import Order
 from store_app.forms import OrderForm
 
 def order_list(request):
     if not request.user.is_authenticated:
-        return redirect('login')
+        return redirect('customer_app:login')
     orders = Order.objects.filter(customer=request.user)
     return render(request, 'customer_app/order_list.html', {'orders': orders})
 
@@ -20,10 +21,11 @@ def place_order(request):
             order = form.save(commit=False)
             order.customer = request.user
             order.save()
-            return redirect('order_list')
+            return redirect('customer_app:order_list')
     else:
         form = OrderForm()
     return render(request, 'customer_app/place_order.html', {'form': form})
+
 
 
 def customer_list(request):
@@ -68,3 +70,13 @@ def account(request):
     else:
         form = CustomerProfileForm(instance=request.user)
     return render(request, 'customer_app/account.html', {'form': form})
+
+# Custom login view
+class CustomLoginView(LoginView):
+    template_name = 'customer_app/login.html'
+    redirect_authenticated_user = True
+
+# Custom logout view
+class CustomLogoutView(LogoutView):
+    template_name = 'customer_app/logout.html'
+    next_page = 'home'

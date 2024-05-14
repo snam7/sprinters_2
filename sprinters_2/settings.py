@@ -133,6 +133,8 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
 
+LOGIN_REDIRECT_URL = 'customer_app:account'
+LOGOUT_REDIRECT_URL = 'home'  # Assuming 'home' is the name of your homepage url
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

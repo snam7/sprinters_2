@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Chefs</h2>
+<ul>
+    {% for chef in chefs %}
+    <li>{{ chef.user.username }} - Speciality: {{ chef.speciality }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

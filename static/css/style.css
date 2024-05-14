@@ -1,0 +1,85 @@
+/* static/css/style.css */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #004225; /* Dark green from the logo */
+  color: #fff;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+header a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+header a:hover {
+  text-decoration: underline;
+}
+
+nav ul {
+  list-style-type: none;
+}
+
+nav ul li {
+  display: inline;
+}
+
+footer {
+  background-color: #002511; /* Darker green */
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
+.logo img {
+  height: 50px; /* Adjust size accordingly */
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+
+.menu-item {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+.menu-item img {
+  max-width: 100%;
+  height: auto;
+}
+
+.menu-item h3 {
+  color: #333;
+}
+
+.menu-item p {
+  color: #666;
+}
+
+.menu-item button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+}

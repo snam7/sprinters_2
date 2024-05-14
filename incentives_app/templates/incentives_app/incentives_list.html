@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Incentives</h2>
+<ul>
+    {% for incentive in incentives %}
+    <li>{{ incentive.recipient.username }} - ${{ incentive.amount }} on {{ incentive.date_awarded }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

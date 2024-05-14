@@ -1,0 +1,10 @@
+{% extends 'importer_app/base.html' %}
+
+{% block content %}
+<h2>Active Importers</h2>
+<ul>
+    {% for importer in importers %}
+    <li>{{ importer.name }} - Specializes in {{ importer.product_type }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

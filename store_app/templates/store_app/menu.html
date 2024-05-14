@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Menu - Savory Sprinters{% endblock %}
+
+{% block content %}
+<header>
+    <h1>Our Menu</h1>
+    <p>Explore our delicious and vibrant dishes!</p>
+</header>
+
+<section>
+    <div class="menu-grid">
+        {% for item in menu_items %}
+        <div class="menu-item">
+            {% if item.image %}
+            <img src="{{ item.image.url }}" alt="{{ item.name }}">
+            {% endif %}
+            <h3>{{ item.name }}</h3>
+            <p>{{ item.description }}</p>
+            <p>Price: ${{ item.price }}</p>
+            <button>Add to Cart</button>
+        </div>
+        {% empty %}
+        <p>Sorry, no dishes are available at the moment.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

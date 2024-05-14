@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Feedbacks and Complaints</h2>
+<ul>
+    {% for feedback in feedbacks %}
+    <li>{{ feedback.customer.username }} - {{ feedback.content }} - Resolved: {{ feedback.resolved }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

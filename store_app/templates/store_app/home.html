@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Savory Sprinters{% endblock %}
+
+{% block content %}
+<header>
+    <h1>Welcome to Savory Sprinters</h1>
+    <p>Your favorite dishes delivered fast and fresh.</p>
+</header>
+
+<section>
+    <h2>Top Dishes</h2>
+    <div class="dishes-grid">
+        {% for dish in dishes %}
+        <div class="dish">
+            <img src="{{ dish.image.url }}" alt="Picture of {{ dish.name }}">
+            <h3>{{ dish.name }}</h3>
+            <p>{{ dish.description }}</p>
+            <p>Price: ${{ dish.price }}</p>
+            <p>Ordered: {{ dish.orders_count }} times</p>
+        </div>
+        {% empty %}
+        <p>No dishes to display currently.</p>
+        {% endfor %}
+        
+
+    </div>
+</section>
+
+{% if not user.is_authenticated %}
+<section id="login-section">
+    <h2>Login</h2>
+    <form method="post" action="{% url 'customer_app:login' %}">
+        {% csrf_token %}
+        <div>
+            <label>Username:</label>
+            <input type="text" name="username" required>
+        </div>
+        <div>
+            <label>Password:</label>
+            <input type="password" name="password" required>
+        </div>
+        <div>
+            <button type="submit">Login</button>
+        </div>
+    </form>
+    <p>Don’t have an account? <a href="{% url 'customer_app:register' %}">Register here</a>.</p>
+</section>
+{% endif %}
+
+
+{% endblock %}

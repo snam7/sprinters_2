@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Delivery Personnel</h2>
+<ul>
+    {% for delivery_person in delivery_people %}
+    <li>{{ delivery_person.user.username }} - Zone: {{ delivery_person.delivery_zone }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>VIP Customers</h2>
+<ul>
+    {% for vip in vips %}
+    <li>{{ vip.customer.username }} - Discount: {{ vip.extra_discount }}%</li>
+    {% endfor %}
+</ul>
+{% endblock %}

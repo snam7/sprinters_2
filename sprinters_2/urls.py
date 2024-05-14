@@ -27,6 +27,8 @@ urlpatterns = [
     path('', include(('store_app.urls', 'store_app'), namespace='store_app')),
     path('customer/', include(('customer_app.urls','customer_app'),namespace= 'customer_app')),
     path('importer/', include('importer_app.urls')),
+    path('chef/', include('chef_app.urls')),
+
    
 ]
 if settings.DEBUG:

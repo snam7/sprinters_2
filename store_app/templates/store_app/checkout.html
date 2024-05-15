@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<section>
+    <h1>Checkout</h1>
+    <div class="cart-grid">
+        {% for item in cart_items %}
+        <div class="cart-item">
+            <img src="{{ item.menu_item.image.url }}" alt="{{ item.menu_item.name }}">
+            <div>
+                <h3>{{ item.menu_item.name }}</h3>
+                <p>Quantity: {{ item.quantity }}</p>
+                <p>Price per item: ${{ item.menu_item.price }}</p>
+                <p>Total: ${{ item.quantity|floatformat:2|add:"0" }} x ${{ item.menu_item.price|floatformat:2 }}</p>
+            </div>
+        </div>
+        {% empty %}
+        <p>Your cart is empty.</p>
+        {% endfor %}
+    </div>
+    <div>
+        <p>Total to Pay: ${{ total }}</p>
+        <button onclick="location.href='{% url 'store_app:complete_order' %}'">Complete Order</button>
+    </div>
+</section>
+{% endblock %}

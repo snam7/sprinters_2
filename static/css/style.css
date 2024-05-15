@@ -93,3 +93,12 @@ footer {
   border-radius: 8px; /* optional, for rounded corners */
   margin-bottom: 10px; /* space below the image */
 }
+
+.cart-item img {
+  max-width: 70px; /* Adjust the width as needed */
+  max-height: 70px; /* Adjust the height as needed */
+  width: auto; /* Maintains the aspect ratio */
+  height: auto; /* Maintains the aspect ratio */
+  border-radius: 8px; /* Optional: rounds the corners of the images */
+  margin: 10px 0; /* Adds some space around the image */
+}

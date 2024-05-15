@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{%load static%}
+{% load store_filters %}  <!-- Load the custom filters -->
+
+{% block title %}Your Cart - Savory Sprinters{% endblock %}
+
+{% block content %}
+<header>
+    <h1>Your Shopping Cart</h1>
+    <p>Review and manage the items you're planning to order.</p>
+</header>
+
+<section>
+    <div class="cart-grid">
+        {% for item in cart_items %}
+        <div class="cart-item">
+            <img src="{{ item.menu_item.image.url }}" alt="{{ item.menu_item.name }}">
+            <div>
+                <h3>{{ item.menu_item.name }}</h3>
+                <p>{{ item.menu_item.description }}</p>
+                <p>Quantity: {{ item.quantity }}</p>
+                <p>Price per item: ${{ item.menu_item.price }}</p>
+                <p>Total: ${{ item.quantity|floatformat:2|add:"0" }} x ${{ item.menu_item.price|floatformat:2 }}</p>
+                <button onclick="location.href='{% url 'store_app:remove_from_cart' item.id %}'">Remove</button>
+            </div>
+        </div>
+        {% empty %}
+        <p>Your cart is empty.</p>
+        {% endfor %}
+    </div>
+    {% if cart_items %}
+    <button onclick="location.href='{% url 'store_app:checkout' %}'">Proceed to Checkout</button>
+    {% endif %}
+
+</section>
+{% endblock %}s

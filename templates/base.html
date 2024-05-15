@@ -1,5 +1,7 @@
 <!-- templates/base.html -->
 {% load static %}
+{% load store_filters %}  <!-- Load the custom filters -->
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,6 +29,8 @@
                 <li><a href="{% url 'customer_app:register' %}">Register</a></li>
                 {% endif %}
                 <li><a href="{% url 'store_app:about' %}">About</a></li>
+                <a href="{% url 'store_app:cart' %}">View Cart</a>
+
             </ul>
         </nav>
     </header>
